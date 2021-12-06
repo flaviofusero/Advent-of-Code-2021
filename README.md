@@ -17,6 +17,6 @@ My solutions for Advent of Code 2021. I summarize below the key takeaways for ea
 ## Day 5
 * Functional approach: write functions that solve the problem for individual list elements, then generalize to the whole list with `lapply`
 
-## Day 5
+## Day 6
 * Use hash tables to solve problems which require counting
 * Use `table` to make a hash table (frequency table) from a list
