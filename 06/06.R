@@ -40,4 +40,5 @@ ans <- function(dat, days) {
 }
 
 ans(dat, 80)
+options(scipen = 999) 
 ans(dat, 256)
