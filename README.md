@@ -19,4 +19,4 @@ My solutions for Advent of Code 2021. I summarize below the key takeaways from e
 
 ## Day 5
 * Use hash tables to solve problems which require counting
-** `freq` can be used to make a hash table (frequency table) from a list
+* `table` can be used to make a hash table (frequency table) from a list
