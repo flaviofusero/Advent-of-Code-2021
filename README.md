@@ -12,11 +12,11 @@ My solutions for Advent of Code 2021. I summarize below the key takeaways from e
 * Clear naming of variables and functions can do wonders for code readability 
 
 ## Day 4
-* Sometimes the best way to parse input where individual data points are tables is to use `readr::read_file %>% stringr::str_split('\r\n\r\n')`
+* Use `readr::read_file %>% stringr::str_split('\r\n\r\n')` to parse input where individual data points are multi-line tables
 
 ## Day 5
 * Functional approach: write functions that solve the problem for individual list elements, then generalize to the whole list with `lapply`
 
 ## Day 5
 * Use hash tables to solve problems which require counting
-* `table` can be used to make a hash table (frequency table) from a list
+* Use `table` to make hash table (frequency table) from a list
