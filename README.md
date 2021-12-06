@@ -1,5 +1,5 @@
 # Advent-of-Code-2021
-My solutions for Advent of Code 2021. I summarize below the key takeaways from each problem.
+My solutions for Advent of Code 2021. I summarize below the key takeaways for each problem.
 
 ## Day 1
 * Prefer vectorization to `for` loops when possible
