@@ -26,7 +26,7 @@ evolve_state <- function(counters) {
   counters
 }
 
-elapse_days <- function(counters, iters) {
+elapse_days <- function(counters, iters) {1
   for (i in 1:iters) {
     counters <- evolve_state(counters)
   }

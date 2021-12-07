@@ -16,6 +16,7 @@ My solutions for Advent of Code 2021. I summarize below the key takeaways for ea
 
 ## Day 5
 * Functional approach: write functions that solve the problem for individual list elements, then generalize to the whole list with `lapply`
+* Matrices can be subsetted with another matrix
 
 ## Day 6
 * Use hash tables to solve problems which require counting
