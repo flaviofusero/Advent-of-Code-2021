@@ -27,3 +27,4 @@ My solutions for Advent of Code 2021. I summarize below the key takeaways for ea
 
 ## Day 9
 * Use BFS / DFS to search mazes
+* Use `apply` for columnwise or rowwise operation on matrices
