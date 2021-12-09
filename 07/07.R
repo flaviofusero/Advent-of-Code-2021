@@ -2,20 +2,13 @@ library(magrittr)
 library(stringr)
 library(purrr)
 
-parse_data <- function(path) {
-  input <- readLines(path) %>% 
-    str_extract_all('[:digit:]+', simplify = TRUE) %>% 
-    as.numeric 
-  
-  table(input)
-}
-
 path = 'input.txt'
-dat <- parse_data(path)
+dat <- scan("input.txt", what = integer(), sep = ",") %>%
+  table
 
 get_dist_to <- function(n, dat, dist) {
   positions <- as.numeric(names(dat))
-  dist_to_n <- map_dbl(positions, ~ dist(.x, n))
+  dist_to_n <- map_dbl(positions, ~ dist(., n))
   
   sum(dat[paste(positions)] * dist_to_n)
 }
@@ -23,7 +16,7 @@ get_dist_to <- function(n, dat, dist) {
 ans <- function(dat, dist) {
   positions <- as.numeric(names(dat))
   x <- min(positions):max(positions)
-  min(map_dbl(x, ~ get_dist_to(.x, dat = dat, dist = dist)))
+  min(map_dbl(x, ~ get_dist_to(., dat = dat, dist = dist)))
 }
 
 ans(dat, dist = function(x, y) abs(x - y))

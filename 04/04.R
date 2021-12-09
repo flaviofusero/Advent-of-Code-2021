@@ -4,8 +4,7 @@ library(readr)
 
 parse_data <- function(path) {  
   input <- read_file(path) %>% 
-    str_split('\r\n\r\n') %>% 
-    unlist %>% 
+    str_split('\r\n\r\n', simplify = TRUE) %>% 
     str_extract_all('[:digit:]+') %>% 
     lapply(as.numeric)
   
