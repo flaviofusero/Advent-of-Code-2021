@@ -5,7 +5,7 @@ parse_data <- function(path) {
     str_split('', simplify = TRUE) %>% 
     apply(c(1, 2), FUN = as.numeric)
   
-  return(dat = dat)
+  dat
 }
 
 get_neighbors <- function(dat) {
