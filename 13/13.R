@@ -1,9 +1,10 @@
 library(purrr)
 library(stringr)
+library(readr)
 library(data.table)
 library(ggplot2)
 
-path = 'input.txt'
+path = 'surprise.txt'
 
 parse_data <- function(path) {
   dat <- read_file(path) %>% 
@@ -38,5 +39,5 @@ make_folds <- function(dt, folds) {
 dt <- make_folds(dat[['dt']], dat[['folds']])
 
 ggplot(dt) +
-  geom_point(aes(x, - y)) +
-  ylim(-15, 15)
+  geom_tile(aes(x, -y)) +
+  coord_fixed()
