@@ -27,7 +27,6 @@ play_loop <- function(rules, pairs) {
   new_pairs <- pairs
   
   for (i in 1:length(pairs)) {
-    if (pairs[i] > 0) {
       pair <- names(pairs[i])
       new_pairs[pair] <- new_pairs[pair] - pairs[i]
       pairs2add <- c(
@@ -35,7 +34,6 @@ play_loop <- function(rules, pairs) {
         paste0(map(rules, 2)[[which(map(rules, 1) == pair)]], substr(pair, 2, 2))
       )
       new_pairs[pairs2add] <- new_pairs[pairs2add] + pairs[i]
-    }
   }
   
   new_pairs
@@ -55,8 +53,8 @@ ans <- function(dat, n) {
   
   for (L in unique(unlist(map(dat$rules, 2)))) {
     freq[L] <- ceiling(0.5 * (sum(pairs[grepl(L, names(pairs))]) + pairs[paste0(L, L)]))
-    # We sum the value pairs containing L, with pair 'LL' having twice the weight. However, we have
-    # to divide by two because every pair (except the first and the last) double count the letter.
+    # We sum the value pairs containing L, where pair 'LL' has twice the weight. However, we have
+    # to divide by two because every pair (except the first and the last in the template) double count the letter.
     # The 'ceiling' counteracts the division by two for the initial or final pair. It would only fail (be off by one) if the first 
     # and last letter of the template were the same but that is not the case in my input.
   }
@@ -64,5 +62,9 @@ ans <- function(dat, n) {
   max(freq) - min(freq)
 }
 
+# part 1
+ans(parse_data(path), 10)
+
+# part 2 
 options(scipen = 999)
 ans(parse_data(path), 40)
