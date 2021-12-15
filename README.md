@@ -31,3 +31,6 @@ My solutions for Advent of Code 2021. I summarize below the key takeaways for ea
 
 ## Day 12
 * Recursive solutions can be slow, but their performance can be improved by caching the results. See for example [here](https://www.r-bloggers.com/2014/12/fibonacci-sequence-in-r-with-memoization/) for more details.
+
+## Day 15
+* Use Dijkstra's algorithm or A* for pathfinding (or cheat it out with the `igraph` library)
