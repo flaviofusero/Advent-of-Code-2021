@@ -34,3 +34,6 @@ My solutions for Advent of Code 2021. I summarize below the key takeaways for ea
 
 ### Day 15
 * Use Dijkstra's algorithm or A* for pathfinding (or cheat it out with the `igraph` library)
+
+### Day 16
+* Use `Rmpfr` for integers with arbitrary precision
