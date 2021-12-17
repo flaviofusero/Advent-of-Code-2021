@@ -40,7 +40,8 @@ parse_lit <- function(lit) {
     if (last_five) {
       return(list(pack = lit, 
                   parsed_bits = parsed_bits, 
-                  value = mpfr(paste0(bin, collapse = ''), 128, base = 2))) 
+                  value = mpfr(paste0(bin, collapse = ''), 1024, base = 2)
+                  )) 
     }
   })
 }
@@ -101,20 +102,13 @@ parse_pack <- function(pack, versions = NULL, parsed_bits = 0) {
     if (pack_type == 1) value <- Reduce(prod, subpacks %>% map('value'))
     if (pack_type == 2) value <- Reduce(min, subpacks %>% map('value'))
     if (pack_type == 3) value <- Reduce(max, subpacks %>% map('value'))
-    if (pack_type == 5) value <- map(subpacks, 'value')[[1]] > map(subpacks, 'value')[[2]]
-    if (pack_type == 6) value <- map(subpacks, 'value')[[1]] < map(subpacks, 'value')[[2]]
-    if (pack_type == 7) value <- map(subpacks, 'value')[[1]] == map(subpacks, 'value')[[2]]
+    if (pack_type == 5) value <- mpfr(map(subpacks, 'value')[[1]] > map(subpacks, 'value')[[2]])
+    if (pack_type == 6) value <- mpfr(map(subpacks, 'value')[[1]] < map(subpacks, 'value')[[2]])
+    if (pack_type == 7) value <- mpfr(map(subpacks, 'value')[[1]] == map(subpacks, 'value')[[2]])
     
     return(list(pack = pack, versions = versions, parsed_bits = parsed_bits, value = value))
   }
 }
-
-parse_pack(hex2bin('880086C3E88112'))$value
-parse_pack(hex2bin('CE00C43D881120'))$value
-parse_pack(hex2bin('D8005AC2A8F0'))$value
-parse_pack(hex2bin('F600BC2D8F'))$value
-parse_pack(hex2bin('9C005AC2F8F0'))$value
-parse_pack(hex2bin('9C0141080250320F1802104A08'))$value
 
 pack <- readLines(path) %>%
   hex2bin %>%
