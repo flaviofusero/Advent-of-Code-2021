@@ -37,3 +37,6 @@ My solutions for Advent of Code 2021. I summarize below the key takeaways for ea
 
 ### Day 16
 * Use `Rmpfr` for integers with arbitrary precision
+
+### Day 17
+* Use the `eval(parse(text))` trick to parse text espression end evaluate them
