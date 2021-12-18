@@ -18,6 +18,11 @@ parse_data <- function(path) {
   return(dat)
 }
 
+# Might want to try out data.tree:
+# dt <- FromListSimple(dat)
+# L5 <- Traverse(dt, filterFun = function(x) x$level == 5)
+# etc
+
 sum_nums <- function(n, m) {
   names(n) <- paste0('l', names(n))
   names(m) <- paste0('r', names(m))
