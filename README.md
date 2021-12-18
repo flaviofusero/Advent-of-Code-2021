@@ -39,5 +39,5 @@ My solutions for Advent of Code 2021. I summarize below the key takeaways for ea
 * Use `Rmpfr` for integers with arbitrary precision
 
 ### Day 18
-* Use the `eval(parse(text))` trick to parse text espression end evaluate them
+* Use the `eval(parse(text))` trick to evaluate text expressions (don't do it on untrusted input!)
 * Might also want to explore the `data.tree` library
