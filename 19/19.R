@@ -24,7 +24,7 @@ make_bases <- function() {
                    c(0, 1, -1), c(0, 1, -1), c(0, 1, -1), c(0, 1, -1))
   for (i in 1:nrow(m)) {
     base <- matrix(as.numeric(m[i, ]), 3)
-    if (det(base) == 1 &all( rowSums(abs(base)) == 1) & all(colSums(abs(base)) == 1)) {
+    if (det(base) == 1 & all( rowSums(abs(base)) == 1) & all(colSums(abs(base)) == 1)) {
       bases[[length(bases) + 1]] <- base
     }
   }
@@ -32,7 +32,7 @@ make_bases <- function() {
 }
 
 # Computes the pairwise distances between the beacons in each report.
-# If at least 13 beacons have the same pairwise distances in both reports,
+# If at least 12 beacons have the same pairwise distances in both reports,
 # outputs the beacons whose pairwise distances are the same in both reports.
 
 nn <- function(x) sqrt(sum(x * x))
@@ -77,7 +77,7 @@ bj_to_bi <- function(beacons, bases) {
   }
 }
 
-orient_reports <- function(reports, bases) {
+orient_sea <- function(reports, bases) {
   oriented = 1
   to_orient = 2:length(reports)
   sonars <- data.frame('dx' = 0, 'dy' = 0, 'dz' = 0)
@@ -101,7 +101,7 @@ orient_reports <- function(reports, bases) {
 }
 
 sea <- parse_data(path) %>% 
-  orient_reports(bases = make_bases())
+  orient_sea(bases = make_bases())
 
 # part 1
 Reduce(cbind, sea[['reports']]) %>% 
