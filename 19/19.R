@@ -94,7 +94,7 @@ orient_sea <- function(reports, bases) {
   sonars <- data.frame('dx' = 0, 'dy' = 0, 'dz' = 0)
   
   while (length(to_orient)) {
-    for (we in oriented) {
+    for (i in oriented) {
       for (j in to_orient) {
         beacons_ij <- get_common_beacons(reports, i, j)
         if (length(beacons_ij)) {
