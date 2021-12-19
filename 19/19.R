@@ -35,7 +35,7 @@ make_rotations <- function() {
                    c(0, 1, -1), c(0, 1, -1), c(0, 1, -1), c(0, 1, -1))
   for (i in 1:nrow(m)) {
     base <- matrix(as.numeric(m[i, ]), 3)
-    if (det(base) == 1 & all( rowSums(abs(base)) == 1) & all(colSums(abs(base)) == 1)) {
+    if (det(base) == 1 & all(rowSums(abs(base)) == 1) & all(colSums(abs(base)) == 1)) {
       bases[[length(bases) + 1]] <- base
     }
   }
@@ -64,9 +64,9 @@ get_common_beacons <- function(reports, i, j) {
   }
 }
 
-# If the reports use the same coordinate base, i expect the pairwise offsets in x, y and z coordinates of the
+# If the reports use the same coordinate frame, we expect the pairwise offsets in x, y and z coordinates of the
 # beacons to overlap in all spots.
-# If this doesn't happen, i rotate bj (i.e. change the base of bj) and try again.
+# If this doesn't happen, we rotate bj (i.e. change the base of bj) and try again.
 
 bj_to_bi <- function(beacons, bases) {
   bi <- beacons$bi
