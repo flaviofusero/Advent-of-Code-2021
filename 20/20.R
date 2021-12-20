@@ -32,7 +32,6 @@ play_loop <- function(grid, enh, parity) {
           paste0(collapse = '') %>% 
           strtoi(base = 2)
       }
-      
       new_grid[i, j] <- enh[index + 1]
     }
   }
@@ -41,14 +40,12 @@ play_loop <- function(grid, enh, parity) {
 
 play_game <- function(grid, enh, n) {
   for (iter in 1:n) {
-    print(iter)
     if (iter %% 2 == 1) {
       grid <- play_loop(grid, enh, 'odd')
     } else {
       grid <- play_loop(grid, enh, 'even')
     }
   }
-  
   return(grid)
 }
 
