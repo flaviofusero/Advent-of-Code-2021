@@ -28,7 +28,8 @@ parse_data <- function(path) {
   return(beacons)
 }
 
-# Returns the positive-oriented rotation matrices of R^3
+# Returns the (positive-oriented) rotation matrices of R^3
+
 make_rotations <- function() {
   bases <- list()
   m <- expand.grid(c(0, 1, -1), c(0, 1, -1), c(0, 1, -1), c(0, 1, -1), c(0, 1, -1), 
@@ -55,7 +56,7 @@ get_common_beacons <- function(reports, i, j) {
   common_dj <- (dj > 0) & (dj %in% di)
   
   if(sum(common_di) >= 132) { 
-    # 132 = 12 * 11 ways in which you can chose ordered pairs of beacons
+    # 132 = 12 * 11 ways in which you can choose an ordered pair of beacons
     bi <- reports[[i]][, intersect(which(common_di, arr.ind = TRUE)[, 1], 
                                    which(rowSums(common_di) >= 11))]
     bj <- reports[[j]][, intersect(which(common_dj, arr.ind = TRUE)[, 1],
