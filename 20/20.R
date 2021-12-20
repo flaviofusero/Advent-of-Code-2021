@@ -5,7 +5,7 @@ path <- 'input.txt'
 enh <- unlist(str_split(readLines(path)[1], ''))
 inp <- str_split(readLines(path)[3:length(readLines(path))], '', simplify = TRUE)
 
-max_col <- ncol(inp) + 50
+max_col <- ncol(inp) + 105
 grid <- matrix('.', max_col, max_col)
 start <- ceiling((max_col - ncol(inp)) / 2)
 
@@ -41,15 +41,16 @@ play_loop <- function(grid, enh, parity) {
 
 play_game <- function(grid, enh, n) {
   for (iter in 1:n) {
+    print(iter)
     if (iter %% 2 == 1) {
-      grid <- play_loop(grid, enh, odd)
+      grid <- play_loop(grid, enh, 'odd')
     } else {
-      grid <- play_loop(grid, enh, even)
+      grid <- play_loop(grid, enh, 'even')
     }
   }
   
   return(grid)
 }
 
-g <- play_game(grid, enh, 2)
+g <- play_game(grid, enh, 50)
 sum(g == '1')
