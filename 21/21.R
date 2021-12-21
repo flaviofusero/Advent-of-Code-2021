@@ -3,11 +3,12 @@ library(combinat)
 
 pos <- c(3, 5)
 scores <- c(0, 0)
-rolls <- 0
 
 # part 1 
 
-play_practice <- function(pos, scores, rolls) {
+play_practice <- function(pos, scores) {
+  rolls <- 0
+  
   while (max(scores) < 1000) {
     player <- ifelse(rolls %% 2 == 0, 1, 2)
     rolls <- rolls + 3
@@ -20,11 +21,11 @@ play_practice <- function(pos, scores, rolls) {
   return(min(scores) * rolls)
 }
 
-play_practice(pos, scores, rolls)
+play_practice(pos, scores)
 
 # part 2
 
-# calculates how many combinations yield a sum of 3 die rolls equal to 3, 4, ..., 9
+# counts how many combinations yield a sum of 3 die rolls equal to 3, 4, ..., 9
 outcomes <- combn(rep((1:3), 3), 3) %>% 
   unique(MARGIN = 2) %>% 
   apply(2, sum) %>% 
