@@ -2,7 +2,6 @@ library(magrittr)
 library(purrr)
 library(data.table)
 library(stringr)
-library(memoise)
 
 path = 'input.txt'
 
@@ -41,8 +40,6 @@ count_paths <- function(dat, node, small_visited, part2 = FALSE, small_twice = F
     ~ count_paths(dat, ., small_visited, part2, small_twice)
   ))
 } 
-
-count_paths <- memoise(count_paths)
 
 dat <- parse_data(path)
 count_paths(dat, 'start', '')

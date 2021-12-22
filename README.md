@@ -30,7 +30,7 @@ My solutions for Advent of Code 2021. I summarize below the key takeaways for ea
 * Use complex number to represent 2d grids, so that most operations behave as expected (sums, rotations, distances, ...)
 
 ### Day 12
-* Recursive solutions can be slow, but their performance can be improved by caching the results. See for example [here](https://www.r-bloggers.com/2014/12/fibonacci-sequence-in-r-with-memoization/) for more details.
+* Recursive solutions can be slow, but their performance can be improved by caching the results. See Day 21 for an example application.
 
 ### Day 15
 * Use Dijkstra's algorithm or A* for pathfinding (or cheat it out with the `igraph` library)
@@ -41,3 +41,6 @@ My solutions for Advent of Code 2021. I summarize below the key takeaways for ea
 ### Day 18
 * Use the `eval(parse(text))` trick to evaluate text expressions (don't do it on untrusted input!)
 * Might also want to explore the `data.tree` library
+
+### Day 21
+* Cache the results of recursive functions to improve speed. This is useful when the space of possible inputs is not too big.
