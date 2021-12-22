@@ -76,8 +76,8 @@ intersect_boxes <- function(box0, box1) {
 
 # Returns list of the intersections of n distinct boxes.
 # Intersections[[1]] contains the starting boxes, intersections[[2]] contains the intersections of
-# two distinct boxes, intersections[[3]] the intersections of three distinct boxes, etc
-# Skips intersections where the second box is one of the starting "off" boxes as we don't need them
+# two distinct boxes, intersections[[3]] the intersections of three distinct boxes, etc.
+# Skips intersections where the second box is one of the starting "off" boxes as we don't need them.
 make_intersections <- function(dat) {
   intersections <- vector('list', 50)
   
@@ -106,7 +106,8 @@ box_vol <- function(box) {
     (box[['xyz']][['z1']] - box[['xyz']][['z0']] + 1)
 }
 
-# Sums volumes of a list of boxes. If 'exclude_off' == T, excludes the 'off' boxes (in our case, only relevant for intersections[[1]]).
+# Sums volumes of a list of boxes. 
+# If 'exclude_off' == T, excludes the 'off' boxes (in our case, only relevant for intersections[[1]]).
 sum_vol <- function(boxes, exclude_off = T) {
   if (exclude_off) {
     boxes <- keep(boxes, ~ !isFALSE(.[['on']]))
@@ -114,9 +115,10 @@ sum_vol <- function(boxes, exclude_off = T) {
   sum(map_dbl(boxes, ~ box_vol(.)))
 }
 
-# The answer to the problem is the sum of the volumes of intersections[[1]], minus the sums of the volumes of
+# The answer to the problem is equal to the sum of the volumes of intersections[[1]], minus the sums of the volumes of
 # intersections[[2]], plus the sum of the volumes of intsersection[[3]], etc. (alternating sign).
 # We have to make sure to ignore the starting 'off' boxes in intersections[[1]].
+# This comes from the inclusion-exclusion formula.
 
 ans2 <- function(dat) {
   intersections <- make_intersections(dat)
