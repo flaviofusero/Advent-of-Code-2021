@@ -48,10 +48,10 @@ box_interesect <- function(box0, box1) {
     center1 <- xyz1[[paste0(coord, '0')]] + half_width1
     dist <- abs(center1 - center0)
     if (dist > half_width0 + half_width1) {
-      return(0)
+      return(FALSE)
     }
   }
-  return(+1)
+  return(TRUE)
 }
 
 # intersects two boxes, except if the two boxes are the same, or box1 is one of the starting "off" boxes
@@ -78,7 +78,6 @@ intersect_boxes <- function(box0, box1) {
 # Intersections[[1]] contains the starting boxes, intersections[[2]] contains the intersections of
 # two distinct boxes, intersections[[3]] the intersections of three distinct boxes, etc
 # Skips intersections where the second box is one of the starting "off" boxes as we don't need them
-
 make_intersections <- function(dat) {
   intersections <- vector('list', 50)
   
@@ -107,16 +106,22 @@ box_vol <- function(box) {
     (box[['xyz']][['z1']] - box[['xyz']][['z0']] + 1)
 }
 
-# the result is the sum of the volumes of intersections[[1]], minus the sums of the volumes of
+# Sums volumes of a list of boxes. If 'exclude_off' == T, excludes the 'off' boxes (in our case, only relevant for intersections[[1]]).
+sum_vol <- function(boxes, exclude_off = T) {
+  if (exclude_off) {
+    boxes <- keep(boxes, ~ !isFALSE(.[['on']]))
+  }
+  sum(map_dbl(boxes, ~ box_vol(.)))
+}
+
+# The answer to the problem is the sum of the volumes of intersections[[1]], minus the sums of the volumes of
 # intersections[[2]], plus the sum of the volumes of intsersection[[3]], etc. (alternating sign).
-# We then have to subtract the sum of the volume of the starting "off" boxes
+# We have to make sure to ignore the starting 'off' boxes in intersections[[1]].
 
 ans2 <- function(dat) {
-  intersections <- make_intersections(parse_data(path))
+  intersections <- make_intersections(dat)
   sum(map_dbl(1:length(intersections), function(i) {
-    sum(map_dbl(intersections[[i]], function(box) {
-      ifelse(i == 1 & !box[['on']], 0, ifelse(i %% 2 == 1, 1, -1)) * box_vol(box)
-    }))
+    ifelse(i %% 2 == 1, 1, -1) * sum_vol(intersections[[i]])
   }))
 }
 
