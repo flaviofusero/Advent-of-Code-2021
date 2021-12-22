@@ -32,7 +32,7 @@ outcomes <- combn(rep((1:3), 3), 3) %>%
   table
 
 play_dirac <- (function() {
-  # preparing the cache
+  # prepares the cache
   cache <- NULL
   cache_reset <- function() {
     cache <<- new.env(TRUE, emptyenv())
@@ -48,19 +48,20 @@ play_dirac <- (function() {
   cache_has_key <- function(key) {
     exists(key, envir = cache, inherits = FALSE)
   }
-  # Initialize the cache
+  
+  # initializes the cache
   cache_reset()
   
-  # closure (i.e. cached function)
+  # defines the closure (i.e. the cached function returned by the anonymous function)
   function(player, pos, scores, move) {
     args <- paste(player, paste0(pos, collapse = '_'), paste0(scores, collapse = '_'), move, sep = '_')
     
-    # cached cases
+    # deals with the cached cases
     if (cache_has_key(args)) { 
       return(cache_get(args))
     }
     
-    # non-cached cases
+    # deals with the non-cached cases
     pos[player] <- ifelse((pos[player] + move) %% 10 == 0, 10, (pos[player] + move) %% 10)
     scores[player] <- scores[player] + pos[player]
     
@@ -87,5 +88,4 @@ play_dirac <- (function() {
 r <- map(names(outcomes),
          ~ outcomes[.] * play_dirac(1, pos, scores, as.numeric(.))
 )
-
 max(c(sum(map_dbl(r, 1)), sum(map_dbl(r, 2))))
