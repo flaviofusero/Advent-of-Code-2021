@@ -1,6 +1,5 @@
 library(purrr)
 library(stringr)
-library(data.table)
 
 # The main observations are the following:
 # 
