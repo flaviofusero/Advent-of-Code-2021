@@ -44,3 +44,9 @@ My solutions for Advent of Code 2021. I summarize below the key takeaways for ea
 
 ### Day 21
 * Cache the results of recursive functions to improve speed. This is useful when the space of possible inputs is not too big.
+
+### Day 23
+* Implement your own A* or Dijkstra for pathfinding, even if you don't have the complete graph at your disposal, but only the neighbor-finding function
+
+### Day 24
+* Sometimes the particular structure of your input can make the problem easier when solving the general case is not an option
