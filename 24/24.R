@@ -19,7 +19,7 @@ library(stringr)
 #        ((z %% 26) + xadd[block]) != w
 #   is always verified in the blocks where zdiv = 1 (because xadd is always >= 10 in those
 #   blocks, but w is always less than 10).
-#   Since there are 7 code chunks where zdiv = 1 and 7 where zdiv = 26, and since the final number of
+#   Since there are 7 code blocks where zdiv = 1 and 7 where zdiv = 26, and since the final number of
 #   digits of z must be 1 (because z must be 0), then it must be that every code block where zdiv = 26
 #   removes one digit. This happens exactly when
 #       ((z %% 26) + xadd[block]) == w
