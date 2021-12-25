@@ -2,6 +2,7 @@ library(purrr)
 library(stringr)
 
 path <- 'input.txt'
+
 parse_data <- function(path) {
   readLines(path) %>% 
     str_split('', simplify = TRUE)
@@ -31,7 +32,7 @@ play_loop <- function(grid) {
     }
     grid <- new_grid
   }
-  return(new_grid)
+  return(grid)
 }
 
 play_game <- function(grid) {
